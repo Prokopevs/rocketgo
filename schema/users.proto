@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package rocketgo.schema;
+
+option go_package = "./;schema";
+
+service Users {
+  // AddUser - add user after registration.
+  rpc AddUser(AddUserRequest) returns (AddUserResponse) {}
+  // GetUser - get user by id.
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {}
+  // IsUserWithIdExists - check if user with id exist
+  rpc IsUserWithIdExists(IsUserWithIdExistsRequest) returns (IsUserWithIdExistsResponse) {}
+}
+
+message AddUserRequest {
+  int64 id = 1;
+  string firstname = 2;
+  string username = 3;
+}
+
+message GetUserRequest {
+  int64 id = 1;
+}
+
+message IsUserWithIdExistsRequest {
+  int64 id = 1;
+}
+
+message AddUserResponse {}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message User {
+  int64 id = 1;
+  string firstname = 2;
+  string username = 3;
+}
+
+message IsUserWithIdExistsResponse {
+  bool exists = 1;
+}
